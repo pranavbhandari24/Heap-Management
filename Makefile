@@ -1,34 +1,33 @@
-CC=       	gcc
-CFLAGS= 	-g -gdwarf-2 -std=gnu99 -Wall
+CC=       		gcc
+CFLAGS= 		-g -gdwarf-2 -std=gnu99 -Wall
 LDFLAGS=
-LIBRARIES=      libmalloc-ff.so \
-		libmalloc-nf.so \
-		libmalloc-bf.so \
-		libmalloc-wf.so
+LIBRARIES=      lib/libmalloc-ff.so \
+				lib/libmalloc-nf.so \
+				lib/libmalloc-bf.so \
+				lib/libmalloc-wf.so
 
-TESTS=		test1 \
-                test2 \
-                test3 \
-                test4 \
-                bfwf \
-                ffnf \
-				realloc
+TESTS=			tests/test1 \
+                tests/test2 \
+                tests/test3 \
+                tests/test4 \
+                tests/bfwf \
+                tests/ffnf 
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 all:    $(LIBRARIES) $(TESTS)
 
-libmalloc-ff.so:     malloc.c
+libmalloc-ff.so:     src/malloc.c
 	$(CC) -shared -fPIC $(CFLAGS) -DFIT=0 -o $@ $< $(LDFLAGS)
 
-libmalloc-nf.so:     malloc.c
+libmalloc-nf.so:     src/malloc.c
 	$(CC) -shared -fPIC $(CFLAGS) -DNEXT=0 -o $@ $< $(LDFLAGS)
 
-libmalloc-bf.so:     malloc.c
+libmalloc-bf.so:     src/malloc.c
 	$(CC) -shared -fPIC $(CFLAGS) -DBEST=0 -o $@ $< $(LDFLAGS)
 
-libmalloc-wf.so:     malloc.c
+libmalloc-wf.so:     src/malloc.c
 	$(CC) -shared -fPIC $(CFLAGS) -DWORST=0 -o $@ $< $(LDFLAGS)
 
 clean:

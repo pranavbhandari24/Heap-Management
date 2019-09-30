@@ -9,16 +9,16 @@ your top level assignment directory and type:
 Once you have the library, you can use it to override the existing malloc by using
 LD_PRELOAD: 
 
-      env LD_PRELOAD=libmalloc-ff.so test1 
+      env LD_PRELOAD=lib/libmalloc-ff.so tests/test1
 
 To run the other heap management schemes replace libmalloc-ff.so with the appropriate
 library:
 
 
-      Best-Fit: libmalloc-bf.so
-      First-Fit: libmalloc-ff.so
-      Next-Fit: libmalloc-nf.so
-      Worst-Fit: libmalloc-wf.so 
+      Best-Fit: lib/libmalloc-bf.so
+      First-Fit: lib/libmalloc-ff.so
+      Next-Fit: lib/libmalloc-nf.so
+      Worst-Fit: liblibmalloc-wf.so 
       
-To use other tests replace test1 with the name of other test files.
+To use other tests replace test1 with the name of other test files, which are present in the tests folder.
 
